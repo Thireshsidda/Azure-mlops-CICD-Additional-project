@@ -1,8 +1,8 @@
 $schema: https://azuremlschemas.azureedge.net/latest/pipelineJob.schema.json
 type: pipeline
-display_name: used_cars_training_pipeline
-experiment_name: used-cars-price-prediction
-description: Training Pipeline to predict the price of used cars
+display_name: customer_purchase_prediction_pipeline
+experiment_name: wellness-tourism-package-prediction
+description: Training pipeline to predict customer purchases for the Wellness Tourism Package
 
 inputs:
   raw_data:
