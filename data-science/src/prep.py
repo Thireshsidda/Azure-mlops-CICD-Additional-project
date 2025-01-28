@@ -8,8 +8,8 @@ import argparse
 from pathlib import Path
 import os
 import pandas as pd
+from sklearn.preprocessing import OneHotEncoder
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
 import mlflow
 
 def parse_args():
@@ -32,28 +32,19 @@ def main(args):
 
     # Drop irrelevant columns
     if "CustomerID" in df.columns:
-        logging.info("Dropping irrelevant column: CustomerID")
-        df = df.drop(["CustomerID"], axis=1)
-        
+        df = df.drop(["CustomerID"], axis=1) 
 
     # One-hot encoding for categorical columns
     categorical_columns = df.select_dtypes(include=["object"]).columns
     
     if len(categorical_columns) > 0:
-        logging.info(f"Applying one-hot encoding to columns: {list(categorical_columns)}")
-
         encoder = OneHotEncoder(sparse=False, drop="first")  # Avoid dummy variable trap
         
         encoded_data = pd.DataFrame(
             encoder.fit_transform(df[categorical_columns]),
             columns=encoder.get_feature_names_out(categorical_columns),
         )
-
         df = pd.concat([df.drop(categorical_columns, axis=1), encoded_data], axis=1)
-        
-
-    # Log the first few rows of the transformed dataframe
-    logging.info(f"Transformed Data:\n{df.head()}")
 
     # Split data into train and test
     train_df, test_df = train_test_split(df, test_size=args.test_train_ratio, random_state=42)
