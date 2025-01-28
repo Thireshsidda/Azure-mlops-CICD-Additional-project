@@ -77,7 +77,7 @@ jobs:
       --model_info_output_path ${{outputs.model_info_output_path}}
     environment: azureml:customer_purchase_ml_environment@latest
     inputs:
-      model_name: "used_cars_price_prediction_model"
+      model_name: "product_taken_prediction_model"
       model_path: ${{parent.jobs.sweep_step.outputs.model_output}}
     outputs:
       model_info_output_path: ${{parent.outputs.model_info_output_path}}
