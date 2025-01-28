@@ -74,7 +74,7 @@ if __name__ == "__main__":
         f"Train dataset input path: {args.train_data}",
         f"Test dataset input path: {args.test_data}",
         f"Model output path: {args.model_output}",
-        f"Number of Estimators: {args.n_estimators}",
+        f"Number of Estimators: {args.criterion}",
         f"Max Depth: {args.max_depth}"
     ]
 
