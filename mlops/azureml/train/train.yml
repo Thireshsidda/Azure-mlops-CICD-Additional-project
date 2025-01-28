@@ -24,4 +24,4 @@ command: >-
   --criterion ${{inputs.criterion}}
   --max_depth ${{inputs.max_depth}}
   --model_output ${{outputs.model_output}}
-environment: azureml:machine-failure-train-env@latest
+environment: azureml:customer_purchase_ml_environment@latest
