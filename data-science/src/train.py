@@ -55,7 +55,7 @@ def main(args):
     yhat_test = model.predict(X_test)
 
     # Compute and log F1 score
-    f1 = f1_score(y_test, tree_predictions)
+    f1 = f1_score(y_test, yhat_test)
     print(f'F1 Score of Decision Tree classifier on test set: {f1:.2f}')
     # Logging the F1 score as a metric
     mlflow.log_metric("F1_Score", float(f1))
