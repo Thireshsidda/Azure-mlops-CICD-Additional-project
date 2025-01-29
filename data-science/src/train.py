@@ -8,7 +8,7 @@ import argparse
 from pathlib import Path
 import pandas as pd
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import confusion_matrix, accuracy_score
+from sklearn.metrics import confusion_matrix, f1_score
 import mlflow
 import mlflow.sklearn
 from matplotlib import pyplot as plt
@@ -54,11 +54,11 @@ def main(args):
     # Predict using the RandomForest Regressor on test data
     yhat_test = model.predict(X_test)
 
-    # Compute and log accuracy score
-    accuracy = accuracy_score(y_test, yhat_test)
-    print(f'Accuracy of Decision Tree classifier on test set: {accuracy:.2f}')
-    # Logging the accuracy score as a metric
-    mlflow.log_metric("Accuracy", float(accuracy))
+    # Compute and log F1 score
+    f1 = f1_score(y_test, tree_predictions)
+    print(f'F1 Score of Decision Tree classifier on test set: {f1:.2f}')
+    # Logging the F1 score as a metric
+    mlflow.log_metric("F1_Score", float(f1))
 
     # Save the model
     mlflow.sklearn.save_model(sk_model=model, path=args.model_output)
