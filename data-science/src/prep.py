@@ -34,18 +34,7 @@ def main(args):
     if "CustomerID" in df.columns:
         df = df.drop(["CustomerID"], axis=1) 
 
-    # # One-hot encoding for categorical columns
-    # categorical_columns = df.select_dtypes(include=["object"]).columns
-    
-    # if len(categorical_columns) > 0:
-    #     encoder = OneHotEncoder(sparse=False, drop="first")  # Avoid dummy variable trap
-        
-    #     encoded_data = pd.DataFrame(
-    #         encoder.fit_transform(df[categorical_columns]),
-    #         columns=encoder.get_feature_names_out(categorical_columns),
-    #     )
-    #     df = pd.concat([df.drop(categorical_columns, axis=1), encoded_data], axis=1)
-
+    # One-hot encoding for categorical columns
     categorical_columns = df.select_dtypes(include=["object"]).columns
 
     if len(categorical_columns) > 0:    
